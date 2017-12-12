@@ -76,8 +76,25 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	LOG("Hit!");
 }
 
+/*
+struct FloorDef {
+	vec3  size;
+	color color;
+	vec3  pos;
+	float rot_angle;
+	vec3  rot_axis;
+};
+*/
+
 void ModuleSceneIntro::LoadFloors()
 {
+	/*
+	FloorDef floor_defs = {
+		{ vec3(9, 0.5, 23), White, vec3(-120.8, 7.4, 8.5), 25, vec3(0, 1, 0) },
+		{ vec3(9, 0.5, 23), White, vec3(-120.8, 7.4, 8.5), 25, vec3(0, 1, 0) },
+	};
+	*/
+
 	floor1.size = vec3(16, 0.5, 160);
 	floor1.color = White;
 	floor1.SetPos(0, 0.5, 0.75);
@@ -198,6 +215,8 @@ void ModuleSceneIntro::LoadFloors()
 	floor16_pb = App->physics->AddBody(floor16, 0.0f);
 	floor16_pb->collision_listeners.add(this);
 	floor16_pb->SetAsSensor(false);
+
+	//CreateFloor(vec3(9, 0.5, 23), White, vec3(-120.8, 7.4, 8.5), 25, vec3(0, 1, 0));
 
 	floor17.size = vec3(34, 0.5, 9);
 	floor17.color = White;
