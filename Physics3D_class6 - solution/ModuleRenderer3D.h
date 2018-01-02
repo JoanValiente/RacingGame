@@ -19,6 +19,10 @@ public:
 
 	void OnResize(int width, int height);
 
+	bool Blit(const SDL_Texture* texture, int x, int y, const SDL_Rect* section, bool flip, float speed, double angle, int pivot_x, int pivot_y) const;
+	
+
+
 public:
 
 	Light lights[MAX_LIGHTS];

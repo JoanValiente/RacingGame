@@ -26,8 +26,8 @@ public:
 	void PrintFloors();
 
 public:
-	Cube s, death;
-	PhysBody3D *sensor = nullptr, *death_pb = nullptr;
+	Cube s[4], death;
+	PhysBody3D *sensor[4], *death_pb = nullptr;
 
 
 

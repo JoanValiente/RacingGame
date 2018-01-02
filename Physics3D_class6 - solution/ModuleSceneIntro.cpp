@@ -22,14 +22,24 @@ bool ModuleSceneIntro::Start()
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
-	s.size = vec3(16, 3, 0.5);
-	s.SetPos(0, 2.5f, 20);
 
-	sensor = App->physics->AddBody(s, 0.0f);
-	sensor->SetAsSensor(true);
-	sensor->collision_listeners.add(this);
+	s[0].SetPos(0, 2.5f, 20);
+	s[0].size = vec3(16, 3, 0.5);
+	s[1].SetPos(-113, 9, 15);
+	s[1].size = s[0].size;
+	s[2].SetPos(-45, 2, 105);
+	s[2].size = vec3(0.5, 3, 16);
+	s[3].SetPos(-65, 9, -75);
+	s[3].size = vec3(0.5, 3, 30);
 
 
+
+	for (int i = 0; i < 4; i++)
+	{
+		sensor[i] = App->physics->AddBody(s[i], 0.0f);
+		sensor[i]->SetAsSensor(true);
+		sensor[i]->collision_listeners.add(this);
+	}
 	death.size = vec3(300, 0.25, 300);
 	death.SetPos(-50, 0.1, 0);
 	death.color = Black;
@@ -60,8 +70,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
-	sensor->GetTransform(&s.transform);
-	s.Render();
+	for (int i = 0; i < 4; i++)
+	{
+		sensor[i]->GetTransform(&s[i].transform);
+		s[i].Render();
+	}
 
 	death_pb->GetTransform(&death.transform);
 	death.Render();
@@ -79,7 +92,6 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	if (body1 == death_pb)
 	{
 		App->player->dead = true;
-		App->player->vehicle->SetPos(0, 1, 10);
 	}
 }
 
