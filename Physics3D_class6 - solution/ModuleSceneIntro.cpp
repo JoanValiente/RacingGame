@@ -3,6 +3,8 @@
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
 #include "PhysBody3D.h"
+#include "ModulePlayer.h"
+#include "PhysVehicle3D.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -74,6 +76,11 @@ update_status ModuleSceneIntro::Update(float dt)
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 	LOG("Hit!");
+	if (body1 == death_pb)
+	{
+		App->player->dead = true;
+		App->player->vehicle->SetPos(0, 1, 10);
+	}
 }
 
 
@@ -120,7 +127,6 @@ void ModuleSceneIntro::PrintFloors()
 		tmp_pb = tmp_pb->next;
 	}
 }
-
 void ModuleSceneIntro::CreateFloor(vec3 size, Color color, vec3 pos, float angle, vec3 rotation_axis) {
 	Cube floor;
 	PhysBody3D *floor_pb;

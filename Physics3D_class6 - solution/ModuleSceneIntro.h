@@ -27,7 +27,10 @@ public:
 
 public:
 	Cube s, death;
-	PhysBody3D *sensor, *death_pb;
+	PhysBody3D *sensor = nullptr, *death_pb = nullptr;
+
+
+
 
 	//Floor
 	p2List<Cube> floors;

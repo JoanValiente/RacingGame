@@ -19,10 +19,16 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+	void Respawn();
+
 public:
 
-	PhysVehicle3D* vehicle;
+	PhysVehicle3D* vehicle = nullptr;
 	float turn;
 	float acceleration;
 	float brake;
+
+
+	bool dead = false;
+	int timer = 0;
 };
