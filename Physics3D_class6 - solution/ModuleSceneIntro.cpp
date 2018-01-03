@@ -42,10 +42,7 @@ bool ModuleSceneIntro::Start()
 		sensor[i]->SetAsSensor(true);
 		sensor[i]->collision_listeners.add(this);
 		s[i].color = Red;
-<<<<<<< HEAD
-=======
 		s[i].Render();
->>>>>>> origin/master
 	}
 
 	death.size = vec3(300, 0.25, 300);
@@ -175,6 +172,7 @@ void ModuleSceneIntro::LoadCircuit()
 	CreateCircuit(vec3(14.5, 0.5, 38), RedGray, vec3(-25.2, 0.5, 79), 90, vec3(0, 0, 1));
 	CreateCircuit(vec3(14.5, 0.5, 29.5), RedGray, vec3(-8.2, 0.5, 95.5), 90, vec3(0, 0, 1));
 	CreateCircuit(vec3(14.5, 55, 0.5), RedGray, vec3(-35.8, 0.5, 110), 90, vec3(0, 0, 1));
+	CreateCircuit(vec3(14.5, 38.5, 0.5), RedGray, vec3(-44.2, 0.5, 98), 90, vec3(0, 0, 1));
 
 }
 
@@ -190,7 +188,7 @@ void ModuleSceneIntro::PrintCircuit()
 		tmp_pb = tmp_pb->next;
 	}
 }
-<<<<<<< HEAD
+
 void ModuleSceneIntro::Timer()
 {
 	if (App->player->win == false)
@@ -204,13 +202,6 @@ void ModuleSceneIntro::Timer()
 		App->player->lose = true;
 
 }
-void ModuleSceneIntro::CreateFloor(vec3 size, Color color, vec3 pos, float angle, vec3 rotation_axis) {
-	Cube floor;
-	PhysBody3D *floor_pb;
-	floor.size = size;
-	floor.color = White;
-	floor.SetPos(pos.x, pos.y, pos.z);
-=======
 
 void ModuleSceneIntro::CreateCircuit(vec3 size, Color color, vec3 pos, float angle, vec3 rotation_axis) {
 	Cube tmp;
@@ -218,7 +209,6 @@ void ModuleSceneIntro::CreateCircuit(vec3 size, Color color, vec3 pos, float ang
 	tmp.size = size;
 	tmp.color = White;
 	tmp.SetPos(pos.x, pos.y, pos.z);
->>>>>>> origin/master
 	if (angle != 0) {
 		tmp.SetRotation(angle, rotation_axis);
 	}
