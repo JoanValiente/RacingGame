@@ -21,9 +21,9 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
-	void CreateFloor(vec3 size, Color color, vec3 pos, float angle, vec3 rotation_axis);
-	void LoadFloors();
-	void PrintFloors();
+	void CreateCircuit(vec3 size, Color color, vec3 pos, float angle, vec3 rotation_axis);
+	void LoadCircuit();
+	void PrintCircuit();
 
 public:
 	Cube s[4], death;
@@ -34,9 +34,8 @@ public:
 
 
 	//Floor
-	p2List<Cube> floors;
-	p2List<PhysBody3D*> floors_pb;
-	p2List<Cube> walls;
-	p2List<PhysBody3D*> walls_pb;
+	p2List<Cube> circuit;
+	p2List<PhysBody3D*> circuit_pb;
+	
 
 };
