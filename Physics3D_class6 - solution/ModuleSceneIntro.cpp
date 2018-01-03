@@ -40,7 +40,7 @@ bool ModuleSceneIntro::Start()
 		sensor[i]->SetAsSensor(true);
 		sensor[i]->collision_listeners.add(this);
 		s[i].color = Red;
-		s[i].Render
+		s[i].Render();
 	}
 	death.size = vec3(300, 0.25, 300);
 	death.SetPos(-50, 0.1, 0);
