@@ -173,6 +173,16 @@ void ModuleSceneIntro::LoadCircuit()
 	CreateCircuit(vec3(14.5, 0.5, 29.5), RedGray, vec3(-8.2, 0.5, 95.5), 90, vec3(0, 0, 1));
 	CreateCircuit(vec3(14.5, 55, 0.5), RedGray, vec3(-35.8, 0.5, 110), 90, vec3(0, 0, 1));
 	CreateCircuit(vec3(14.5, 38.5, 0.5), RedGray, vec3(-44.2, 0.5, 98), 90, vec3(0, 0, 1));
+	CreateCircuit(vec3(14.5, 12.5, 0.5), RedGray, vec3(-14, 0.5, -72), 90, vec3(0, 0, 1));
+	CreateCircuit(vec3(14.5, 28, 0.5), RedGray, vec3(-6, 0.5, -79.5), 90, vec3(0, 0, 1));
+	CreateCircuit(vec3(14.5, 15, 0.5), RedGray, vec3(-27.5, 0.5, -65.5), 90, vec3(0, 0, 1));
+	CreateCircuit(vec3(14.5, 15, 0.5), RedGray, vec3(-27.5, 0.5, -86), 90, vec3(0, 0, 1));
+	CreateCircuit(vec3(14.5, 0.5, 6.5), RedGray, vec3(-20, 0.5, -82.5), 90, vec3(0, 0, 1));
+	CreateCircuit(vec3(14.5, 0.5, 6.5), RedGray, vec3(-20, 0.5, -68.5), 90, vec3(0, 0, 1));
+	CreateCircuit(vec3(14.5, 0.5, 6), RedGray, vec3(-35, 0.5, -83.25), 90, vec3(0, 0, 1));
+	CreateCircuit(vec3(14.5, 0.5, 6), RedGray, vec3(-35, 0.5, -68.3), 90, vec3(0, 0, 1));
+	CreateCircuit(vec3(14.5, 34, 0.5), RedGray, vec3(-52, 0.5, -80), 90, vec3(0, 0, 1));
+	CreateCircuit(vec3(14.5, 34, 0.5), RedGray, vec3(-52, 0.5, -71), 90, vec3(0, 0, 1));
 
 }
 
