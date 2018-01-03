@@ -20,6 +20,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 
 	CreateCar();
+	win = false, lose = false;
 
 	return true;
 }
@@ -37,32 +38,45 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
 
-	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	if (win == true || lose == true)
 	{
-		acceleration = MAX_ACCELERATION;
+		if (win == true)
+			App->window->SetTitle("YOU WIN!! PRES 'R' TO RESTART");
+		if (lose == true)
+			App->window->SetTitle("YOU LOSE!! PRES 'R' TO RESTART");
+		if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+		{
+			ResetGame();
+		}
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+	else
 	{
-		if(turn < TURN_DEGREES)
-			turn +=  TURN_DEGREES;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+		{
+			acceleration = MAX_ACCELERATION;
+		}
 
-	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-	{
-		if(turn > -TURN_DEGREES)
-			turn -= TURN_DEGREES;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+		{
+			if (turn < TURN_DEGREES)
+				turn += TURN_DEGREES;
+		}
 
-	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	{
-		acceleration = -MAX_ACCELERATION;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+		{
+			if (turn > -TURN_DEGREES)
+				turn -= TURN_DEGREES;
+		}
 
+		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+		{
+			acceleration = -MAX_ACCELERATION;
+		}
+	}
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
-
 	vehicle->Render();
 	
 	char title[80];
@@ -167,4 +181,15 @@ void ModulePlayer::CreateCar()
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(0, 1, 10);
 	vehicle->GetTransform(&matrix);
+}
+
+void ModulePlayer::ResetGame()
+{
+	dead = true;
+	win = false;
+	lose = false;
+	App->scene_intro->timer = 180;
+	App->scene_intro->laps = 0;
+	App->scene_intro->start_timer = SDL_GetTicks() / 1000;
+
 }

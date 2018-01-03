@@ -21,7 +21,7 @@ public:
 
 	void Respawn();
 	void CreateCar();
-
+	void ResetGame();
 
 public:
 
@@ -30,6 +30,8 @@ public:
 	float turn;
 	float acceleration;
 	float brake;
+
+	bool win = false, lose = false;
 
 	bool dead = false;
 	int timer = 0;

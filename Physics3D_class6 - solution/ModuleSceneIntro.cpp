@@ -6,6 +6,7 @@
 #include "ModulePlayer.h"
 #include "PhysVehicle3D.h"
 
+
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 }
@@ -22,6 +23,7 @@ bool ModuleSceneIntro::Start()
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
+	start_timer = SDL_GetTicks() / 1000;
 
 	s[0].SetPos(0, 2.5f, 20);
 	s[0].size = vec3(16, 3, 0.5);
@@ -40,7 +42,6 @@ bool ModuleSceneIntro::Start()
 		sensor[i]->SetAsSensor(true);
 		sensor[i]->collision_listeners.add(this);
 		s[i].color = Red;
-		s[i].Render
 	}
 	death.size = vec3(300, 0.25, 300);
 	death.SetPos(-50, 0.1, 0);
@@ -54,6 +55,8 @@ bool ModuleSceneIntro::Start()
 	LoadFloors();
 	
 	checkpoint1 = true, checkpoint2 = true, checkpoint3 = true;
+	laps = 0;
+	timer = 180;
 	return ret;
 }
 
@@ -75,7 +78,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	for (int i = 0; i < 4; i++)
 	{
 		sensor[i]->GetTransform(&s[i].transform);
-		s[i].Render();
+		//s[i].Render();
 	}
 
 	death_pb->GetTransform(&death.transform);
@@ -85,8 +88,10 @@ update_status ModuleSceneIntro::Update(float dt)
 	// Road
 	PrintFloors();
 
+	Timer();
+
 	char title[80];
-	sprintf_s(title, "Lap %i", laps);
+	sprintf_s(title, "Lap %i/3 Time %i", laps, actual_time);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
@@ -104,6 +109,10 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 		if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true)
 		{
 			laps++;
+			if(laps == 4)
+			{ 
+				App->player->win = true;
+			}
 			checkpoint1 = false, checkpoint2 = false, checkpoint3 = false;
 		}
 	}
@@ -164,6 +173,19 @@ void ModuleSceneIntro::PrintFloors()
 		tmp = tmp->next;
 		tmp_pb = tmp_pb->next;
 	}
+}
+void ModuleSceneIntro::Timer()
+{
+	if (App->player->win == false)
+	{
+		actual_time = SDL_GetTicks() / 1000 - start_timer;
+		actual_time -= timer;
+		actual_time = actual_time*-1;
+	}
+
+	if (actual_time == 0)
+		App->player->lose = true;
+
 }
 void ModuleSceneIntro::CreateFloor(vec3 size, Color color, vec3 pos, float angle, vec3 rotation_axis) {
 	Cube floor;

@@ -24,6 +24,7 @@ public:
 	void CreateFloor(vec3 size, Color color, vec3 pos, float angle, vec3 rotation_axis);
 	void LoadFloors();
 	void PrintFloors();
+	void Timer();
 
 public:
 	Cube s[4], death;
@@ -32,6 +33,9 @@ public:
 	bool checkpoint1 = false, checkpoint2 = false, checkpoint3 = false;
 	int laps = 0;
 
+	int start_timer;
+	int timer = 180;
+	int actual_time;
 
 	//Floor
 	p2List<Cube> floors;
