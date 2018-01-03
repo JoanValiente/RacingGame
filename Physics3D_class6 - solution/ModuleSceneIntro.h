@@ -29,7 +29,8 @@ public:
 	Cube s[4], death;
 	PhysBody3D *sensor[4], *death_pb = nullptr;
 
-
+	bool checkpoint1 = false, checkpoint2 = false, checkpoint3 = false;
+	int laps = 0;
 
 
 	//Floor

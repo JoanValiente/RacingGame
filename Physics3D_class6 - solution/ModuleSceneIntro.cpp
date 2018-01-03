@@ -51,7 +51,7 @@ bool ModuleSceneIntro::Start()
 	// Road
 	LoadFloors();
 	
-
+	checkpoint1 = true, checkpoint2 = true, checkpoint3 = true;
 	return ret;
 }
 
@@ -83,6 +83,10 @@ update_status ModuleSceneIntro::Update(float dt)
 	// Road
 	PrintFloors();
 
+	char title[80];
+	sprintf_s(title, "Lap %i", laps);
+	App->window->SetTitle(title);
+
 	return UPDATE_CONTINUE;
 }
 
@@ -92,6 +96,26 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	if (body1 == death_pb)
 	{
 		App->player->dead = true;
+	}
+	if (body1 == sensor[0])
+	{
+		if (checkpoint1 == true && checkpoint2 == true && checkpoint3 == true)
+		{
+			laps++;
+			checkpoint1 = false, checkpoint2 = false, checkpoint3 = false;
+		}
+	}
+	if (body1 == sensor[1])
+	{
+		checkpoint1 = true;
+	}
+	if (body1 == sensor[2])
+	{
+		checkpoint2 = true;
+	}
+	if (body1 == sensor[3])
+	{
+		checkpoint3 = true;
 	}
 }
 
