@@ -107,7 +107,7 @@ void ModulePlayer::CreateCar()
 	VehicleInfo car;
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(2, 2, 4);
-	car.chassis_offset.Set(0, 1.5, 0);
+	car.chassis_offset.Set(0, 2, 0);
 	car.mass = 500.0f;
 	car.suspensionStiffness = 15.88f;
 	car.suspensionCompression = 0.83f;
@@ -163,10 +163,8 @@ void ModulePlayer::CreateCar()
 		car.wheels[i].width = wheel_width;
 		car.wheels[i].brake = true;
 	}
-
 	
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(0, 1, 10);
 	vehicle->GetTransform(&matrix);
-
 }
