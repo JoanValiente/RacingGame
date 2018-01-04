@@ -5,6 +5,7 @@
 #include "PhysBody3D.h"
 #include "ModulePlayer.h"
 #include "PhysVehicle3D.h"
+#include "ModuleAudio.h"
 
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -34,6 +35,7 @@ bool ModuleSceneIntro::Start()
 	s[3].SetPos(-65, 9, -75);
 	s[3].size = vec3(0.5, 3, 30);
 
+	music = "music.ogg";
 
 	App->audio->PlayMusic(music);
 
