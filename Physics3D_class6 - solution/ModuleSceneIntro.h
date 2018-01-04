@@ -48,5 +48,5 @@ public:
 	Cube axis1, obstacle1, axis2, obstacle2, axis3, obstacle3;
 	PhysBody3D *axis1_pb, *obstacle1_pb, *axis2_pb, *obstacle2_pb, *axis3_pb, *obstacle3_pb;
 	
-
+	char* music;
 };
