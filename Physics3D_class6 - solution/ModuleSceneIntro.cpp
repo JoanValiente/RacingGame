@@ -5,6 +5,7 @@
 #include "PhysBody3D.h"
 #include "ModulePlayer.h"
 #include "PhysVehicle3D.h"
+#include "ModuleAudio.h"
 
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -34,7 +35,9 @@ bool ModuleSceneIntro::Start()
 	s[3].SetPos(-65, 9, -75);
 	s[3].size = vec3(0.5, 3, 30);
 
+	music = "music.ogg";
 
+	App->audio->PlayMusic(music);
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -84,7 +87,6 @@ update_status ModuleSceneIntro::Update(float dt)
 	for (int i = 0; i < 4; i++)
 	{
 		sensor[i]->GetTransform(&s[i].transform);
-		//s[i].Render();
 	}
 
 	death_pb->GetTransform(&death.transform);
@@ -308,9 +310,9 @@ void ModuleSceneIntro::CreateCircuit(vec3 size, Color color, vec3 pos, float ang
 	tmp_pb->collision_listeners.add(this);
 	tmp_pb->SetAsSensor(false);
 
-
 	circuit.add(tmp);
 	circuit_pb.add(tmp_pb);
+	
 }
 
 
