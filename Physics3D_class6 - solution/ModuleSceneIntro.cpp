@@ -80,7 +80,6 @@ update_status ModuleSceneIntro::Update(float dt)
 	for (int i = 0; i < 4; i++)
 	{
 		sensor[i]->GetTransform(&s[i].transform);
-		//s[i].Render();
 	}
 
 	death_pb->GetTransform(&death.transform);
@@ -217,7 +216,7 @@ void ModuleSceneIntro::CreateCircuit(vec3 size, Color color, vec3 pos, float ang
 	Cube tmp;
 	PhysBody3D *tmp_pb;
 	tmp.size = size;
-	tmp.color = White;
+	tmp.color = color;
 	tmp.SetPos(pos.x, pos.y, pos.z);
 	if (angle != 0) {
 		tmp.SetRotation(angle, rotation_axis);
@@ -226,7 +225,7 @@ void ModuleSceneIntro::CreateCircuit(vec3 size, Color color, vec3 pos, float ang
 	tmp_pb->collision_listeners.add(this);
 	tmp_pb->SetAsSensor(false);
 
-
 	circuit.add(tmp);
 	circuit_pb.add(tmp_pb);
+	
 }
