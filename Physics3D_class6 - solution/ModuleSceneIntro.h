@@ -41,6 +41,8 @@ public:
 	//Floor
 	p2List<Cube> circuit;
 	p2List<PhysBody3D*> circuit_pb;
+
+	char* music;
 	
 
 };

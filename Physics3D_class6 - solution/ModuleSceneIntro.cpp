@@ -35,6 +35,7 @@ bool ModuleSceneIntro::Start()
 	s[3].size = vec3(0.5, 3, 30);
 
 
+	App->audio->PlayMusic(music);
 
 	for (int i = 0; i < 4; i++)
 	{
