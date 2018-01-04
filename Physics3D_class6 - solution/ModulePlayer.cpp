@@ -189,7 +189,10 @@ void ModulePlayer::ResetGame()
 	win = false;
 	lose = false;
 	App->scene_intro->timer = 180;
-	App->scene_intro->laps = 0;
+	App->scene_intro->laps = 1;
+	App->scene_intro->checkpoint1 = false;
+	App->scene_intro->checkpoint2 = false;
+	App->scene_intro->checkpoint3 = false;
 	App->scene_intro->start_timer = SDL_GetTicks() / 1000;
 
 }
