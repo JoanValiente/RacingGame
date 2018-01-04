@@ -45,7 +45,7 @@ bool ModuleSceneIntro::Start()
 		s[i].Render();
 	}
 
-	death.size = vec3(300, 0.25, 300);
+	death.size = vec3(500, 0.25, 500);
 	death.SetPos(-50, 0.1, 0);
 	death.color = Black;
 
@@ -55,10 +55,14 @@ bool ModuleSceneIntro::Start()
 
 	// Road
 	LoadCircuit();
+
+	//Obstacles
+	LoadObstacles();
+
 	
 	checkpoint1 = true, checkpoint2 = true, checkpoint3 = true;
 	laps = 0;
-	timer = 180;
+	timer = 240;
 	return ret;
 }
 
@@ -89,6 +93,10 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	// Road
 	PrintCircuit();
+
+
+	PrintObstacles();
+	
 
 	Timer();
 
@@ -184,6 +192,68 @@ void ModuleSceneIntro::LoadCircuit()
 	CreateCircuit(vec3(14.5, 34, 0.5), RedGray, vec3(-52, 0.5, -80), 90, vec3(0, 0, 1));
 	CreateCircuit(vec3(14.5, 34, 0.5), RedGray, vec3(-52, 0.5, -71), 90, vec3(0, 0, 1));
 
+	CreateCircuit(vec3(3, 20, 3), Red, vec3(-105, 17, -68.3), 0, vec3(0, 0, 0));
+	CreateCircuit(vec3(3, 20, 3), Red, vec3(-92, 17, -83), 0, vec3(0, 0, 0));
+	CreateCircuit(vec3(3, 20, 3), Red, vec3(-82, 17, -68), 0, vec3(0, 0, 0));
+
+}
+
+void ModuleSceneIntro::LoadObstacles()
+{
+	axis1.size = (10, 10, 1);
+	axis1.SetPos(-112.73, 11.4, 35);
+	axis1.SetRotation(90, vec3(0, 1, 0));
+	axis1_pb = App->physics->AddBody(axis1, 0.0f);
+	axis1_pb->collision_listeners.add(this);
+	axis1_pb->SetAsSensor(true);
+
+	obstacle1.size = (3, 3, 3);
+	obstacle1.SetPos(-112.73, 11.4, 20.5);
+	obstacle1.color = Red;
+	obstacle1.SetRotation(90, vec3(0, 1, 0));
+	obstacle1_pb = App->physics->AddBody(obstacle1, 20.0f);
+	obstacle1_pb->collision_listeners.add(this);
+	obstacle1_pb->SetAsSensor(false);
+
+	App->physics->AddConstraintHinge(*axis1_pb, *obstacle1_pb, vec3(0, 0, 0), vec3(0, 0, 12), vec3(0, 1, 0), vec3(0, 1, 0), true);
+
+	//-------------------------------------------------------------------------------------------------------------------------------------
+
+	axis2.size = (10, 10, 1);
+	axis2.SetPos(-112.73, 11.4, 2);
+	axis2.SetRotation(90, vec3(0, 1, 0));
+	axis2_pb = App->physics->AddBody(axis2, 0.0f);
+	axis2_pb->collision_listeners.add(this);
+	axis2_pb->SetAsSensor(true);
+
+	obstacle2.size = (3, 3, 3);
+	obstacle2.SetPos(-112.73, 11.4, -12.5);
+	obstacle2.color = Red;
+	obstacle2.SetRotation(90, vec3(0, 1, 0));
+	obstacle2_pb = App->physics->AddBody(obstacle2, 20.0f);
+	obstacle2_pb->collision_listeners.add(this);
+	obstacle2_pb->SetAsSensor(false);
+
+	App->physics->AddConstraintHinge(*axis2_pb, *obstacle2_pb, vec3(0, 0, 0), vec3(0, 0, 12), vec3(0, 1, 0), vec3(0, 1, 0), true);
+
+	//-------------------------------------------------------------------------------------------------------------------------------------
+
+	axis3.size = (10, 10, 1);
+	axis3.SetPos(-112.73, 11.4, 65);
+	axis3.SetRotation(90, vec3(0, 1, 0));
+	axis3_pb = App->physics->AddBody(axis3, 0.0f);
+	axis3_pb->collision_listeners.add(this);
+	axis3_pb->SetAsSensor(true);
+
+	obstacle3.size = (3, 3, 3);
+	obstacle3.SetPos(-112.73, 11.4, 52.5);
+	obstacle3.color = Red;
+	obstacle3.SetRotation(90, vec3(0, 1, 0));
+	obstacle3_pb = App->physics->AddBody(obstacle3, 20.0f);
+	obstacle3_pb->collision_listeners.add(this);
+	obstacle3_pb->SetAsSensor(false);
+
+	App->physics->AddConstraintHinge(*axis3_pb, *obstacle3_pb, vec3(0, 0, 0), vec3(0, 0, 12), vec3(0, 1, 0), vec3(0, 1, 0), true);
 }
 
 
@@ -197,6 +267,18 @@ void ModuleSceneIntro::PrintCircuit()
 		tmp = tmp->next;
 		tmp_pb = tmp_pb->next;
 	}
+}
+
+void ModuleSceneIntro::PrintObstacles()
+{
+	obstacle1_pb->GetTransform(&obstacle1.transform);
+	obstacle1.Render();
+
+	obstacle2_pb->GetTransform(&obstacle2.transform);
+	obstacle2.Render();
+
+	obstacle3_pb->GetTransform(&obstacle3.transform);
+	obstacle3.Render();		
 }
 
 void ModuleSceneIntro::Timer()
@@ -217,7 +299,7 @@ void ModuleSceneIntro::CreateCircuit(vec3 size, Color color, vec3 pos, float ang
 	Cube tmp;
 	PhysBody3D *tmp_pb;
 	tmp.size = size;
-	tmp.color = White;
+	tmp.color = color;
 	tmp.SetPos(pos.x, pos.y, pos.z);
 	if (angle != 0) {
 		tmp.SetRotation(angle, rotation_axis);
@@ -230,3 +312,6 @@ void ModuleSceneIntro::CreateCircuit(vec3 size, Color color, vec3 pos, float ang
 	circuit.add(tmp);
 	circuit_pb.add(tmp_pb);
 }
+
+
+

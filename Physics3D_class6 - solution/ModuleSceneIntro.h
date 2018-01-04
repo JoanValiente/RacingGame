@@ -24,7 +24,9 @@ public:
 	void Timer();
 	void CreateCircuit(vec3 size, Color color, vec3 pos, float angle, vec3 rotation_axis);
 	void LoadCircuit();
+	void LoadObstacles();
 	void PrintCircuit();
+	void PrintObstacles();
 
 
 public:
@@ -41,6 +43,10 @@ public:
 	//Floor
 	p2List<Cube> circuit;
 	p2List<PhysBody3D*> circuit_pb;
+
+	//obstacles 
+	Cube axis1, obstacle1, axis2, obstacle2, axis3, obstacle3;
+	PhysBody3D *axis1_pb, *obstacle1_pb, *axis2_pb, *obstacle2_pb, *axis3_pb, *obstacle3_pb;
 	
 
 };
