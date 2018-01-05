@@ -4,8 +4,8 @@
 
 # Racing Game by David Lozano & Joan Valiente
 
-![](image1.png)
-![](image2.png)
+![](image1.PNG)
+![](image2.PNG)
 
 Thanks for checking out our game. We are David Lozano and Joan Valiente from CITM.
 
