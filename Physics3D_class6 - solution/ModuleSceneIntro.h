@@ -30,8 +30,8 @@ public:
 
 
 public:
-	Cube s[4], death;
-	PhysBody3D *sensor[4], *death_pb = nullptr;
+	Cube s[4], death, start_cube;
+	PhysBody3D *sensor[4], *death_pb = nullptr, *start = nullptr;
 
 	bool checkpoint1 = false, checkpoint2 = false, checkpoint3 = false;
 	int laps = 0;

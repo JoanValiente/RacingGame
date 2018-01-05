@@ -64,6 +64,7 @@ bool ModulePhysics3D::Start()
 
 		btRigidBody* body = new btRigidBody(rbInfo);
 		world->addRigidBody(body);
+		debug = false;
 	}
 
 	return true;

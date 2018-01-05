@@ -35,6 +35,9 @@ bool ModuleSceneIntro::Start()
 	s[3].SetPos(-65, 9, -75);
 	s[3].size = vec3(0.5, 3, 30);
 
+	start_cube.SetPos(0, 0.5f, 20);
+	start_cube.size = vec3(16, 3, 0.5);
+
 	music = "music.ogg";
 
 	App->audio->PlayMusic(music);
@@ -44,13 +47,14 @@ bool ModuleSceneIntro::Start()
 		sensor[i] = App->physics->AddBody(s[i], 0.0f);
 		sensor[i]->SetAsSensor(true);
 		sensor[i]->collision_listeners.add(this);
-		s[i].color = Red;
-		s[i].Render();
+		start = App->physics->AddBody(start_cube, 0.0f);
+		start->SetAsSensor(true);
+		start->collision_listeners.add(this);
 	}
 
 	death.size = vec3(500, 0.25, 500);
 	death.SetPos(-50, 0.1, 0);
-	death.color = Black;
+	death.color = Green;
 
 	death_pb = App->physics->AddBody(death, 0.0f);
 	death_pb->SetAsSensor(true);
@@ -83,6 +87,8 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
+
+	start_cube.Render();
 
 	for (int i = 0; i < 4; i++)
 	{
