@@ -48,7 +48,7 @@ Enjoy and thanks for watching!
 #### R: Reset button (only when you win or lose)
 
 
-## Download the latest version of this Racing Game [here](https://github.com/JoanValiente/RacingGame/releases/download/RacingGame/RacingGame.zip)
+## Download the latest version of this Racing Game [here](https://github.com/JoanValiente/RacingGame/files/1608199/RacingGame.zip)
 
 
 ## Link to the repository [here](https://github.com/JoanValiente/RacingGame)
