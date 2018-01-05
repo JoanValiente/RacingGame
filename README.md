@@ -63,7 +63,7 @@ Copyright JS Foundation and other contributors, https://js.foundation/
 
 This software consists of voluntary contributions made by many
 individuals. For exact contribution history, see the revision history
-available at https://github.com/JoanValiente/1-O/
+available at https://github.com/JoanValiente/RacingGame/
 
 The following license applies to all parts of this software except as
 documented below:
